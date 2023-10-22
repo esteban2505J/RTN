@@ -1,16 +1,18 @@
+//Imports
 import React from "react";
 import Home from "./pages/Home";
-// import home from "./pages/home.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import StudentPage from "./pages/studentPage";
 import TeacherPage from "./pages/TecherPage";
+import { Sidebar } from "./components/shared/Sidebar";
 
 function App() {
-  // const route = new Router();
   return (
     <>
       <main>
         <BrowserRouter>
+          <Sidebar />
+
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/studentPage" element={<StudentPage />} />

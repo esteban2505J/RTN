@@ -17,12 +17,13 @@ import { EyeSlashFilledIcon } from "./EyeSlashFilledIcon";
 export default function Login() {
   const [selected, setSelected] = React.useState("login");
   const [isVisible, setIsVisible] = React.useState(false);
+  const [roll, setRoll] = React.useState("");
 
   const toggleVisibility = () => setIsVisible(!isVisible);
   return (
     <>
       <div className="flex flex-col w-full">
-        <Card className="max-w-full w-[340px] h-[400px] bg-slate-500">
+        <Card className="max-w-full w-[340px] h-[400px] bg-[#6b9795] flex">
           <CardBody className="overflow-hidden">
             <Tabs
               fullWidth
@@ -50,9 +51,9 @@ export default function Login() {
                         onClick={toggleVisibility}
                       >
                         {isVisible ? (
-                          <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                        ) : (
                           <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                        ) : (
+                          <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
                         )}
                       </button>
                     }
@@ -64,13 +65,13 @@ export default function Login() {
                     <Link
                       size="sm"
                       onPress={() => setSelected("sign-up")}
-                      className="text-white"
+                      className="text-[#20db8a] shadow-sm"
                     >
                       Sign up
                     </Link>
                   </p>
                   <div className="flex gap-2 justify-end">
-                    <Button fullWidth color="default">
+                    <Button fullWidth className="bg-[#a0ab94]">
                       Login
                     </Button>
                   </div>
@@ -101,9 +102,9 @@ export default function Login() {
                         onClick={toggleVisibility}
                       >
                         {isVisible ? (
-                          <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                        ) : (
                           <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                        ) : (
+                          <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
                         )}
                       </button>
                     }
@@ -115,13 +116,13 @@ export default function Login() {
                     <Link
                       size="sm"
                       onPress={() => setSelected("login")}
-                      className="text-white"
+                      className="text-[#20db8a] shadow-lg rounded-lg"
                     >
                       Login
                     </Link>
                   </p>
                   <div className="flex gap-2 justify-end">
-                    <Button fullWidth color="default">
+                    <Button fullWidth className="bg-[#a0ab94]">
                       Sign up
                     </Button>
                   </div>
