@@ -1,10 +1,13 @@
 import React from "react";
-import { FaHome, FaPercent, FaCog, FaRegBell } from "react-icons/fa";
+import { FaPercent, FaCog, FaRegBell } from "react-icons/fa";
 import { GiPieChart } from "react-icons/gi";
 import { HiOutlineMail, HiOutlineLogout } from "react-icons/hi";
+import { TiMortarBoard } from "react-icons/ti";
+import { Link } from "react-router-dom";
 
 export const Sidebar = (props) => {
   const { showMenu } = props;
+
   return (
     <>
       <div
@@ -14,74 +17,71 @@ export const Sidebar = (props) => {
       >
         <div>
           <ul className="pl-4">
-            <li>
-              <h1 className="text-2xl text-gray-300 uppercase font-bold text-center my-5">
-                Logo
-              </h1>
-            </li>
-
-            <li className="bg-[#262837] p-3 rounded-tl-lg rounded-bl-lg">
-              <a
-                href="#"
-                className="bg-[#ec7c6a]  p-3 flex justify-center rounded-xl text-white"
+            <li className="hover:bg-white p-3 rounded-tl-lg rounded-bl-lg group transition-colors">
+              <Link
+                to="/"
+                className="group-hover:bg-[#262837]  group-hover:text-white p-3 flex justify-center rounded-xl text-salte-700 transition-colors"
               >
-                <FaHome className="text-xl text-center" />
-              </a>
+                <TiMortarBoard className="text-2xl text-center" />
+              </Link>
             </li>
 
-            <li className=" hover:bg-[#262837] p-3 rounded-tl-lg rounded-bl-lg group transition-colors">
-              <a
-                href="#"
-                className=" group-hover:bg-[#ec7c6a] p-3 flex justify-center rounded-xl text-[#ec7c6a] group-hover:text-white transition-colors"
+            <li className=" hover:bg-white p-3 rounded-tl-lg rounded-bl-lg group transition-colors">
+              <Link
+                to="/"
+                className="group-hover:bg-[#262837]  group-hover:text-white p-3 flex justify-center rounded-xl text-salte-700 transition-colors"
               >
                 <FaPercent className="text-xl text-center" />
-              </a>
+              </Link>
             </li>
 
-            <li className=" hover:bg-[#262837] p-3 rounded-tl-lg rounded-bl-lg group transition-colors">
-              <a
-                href="#"
-                className=" group-hover:bg-[#ec7c6a] p-3 flex justify-center rounded-xl text-[#ec7c6a] group-hover:text-white transition-colors"
+            <li className=" hover:bg-white p-3 rounded-tl-lg rounded-bl-lg group transition-colors">
+              <Link
+                to="/"
+                className="group-hover:bg-[#262837]  group-hover:text-white p-3 flex justify-center rounded-xl text-salte-700 transition-colors"
               >
                 <GiPieChart className="text-xl text-center" />
-              </a>
+              </Link>
             </li>
-            <li className=" hover:bg-[#262837] p-3 rounded-tl-lg rounded-bl-lg group transition-colors">
-              <a
-                href="#"
-                className=" group-hover:bg-[#ec7c6a] p-3 flex justify-center rounded-xl text-[#ec7c6a] group-hover:text-white transition-colors"
+
+            <li className=" hover:bg-white p-3 rounded-tl-lg rounded-bl-lg group transition-colors">
+              <Link
+                to="/"
+                className="group-hover:bg-[#262837]  group-hover:text-white p-3 flex justify-center rounded-xl text-salte-700 transition-colors"
               >
                 <HiOutlineMail className="text-xl text-center" />
-              </a>
+              </Link>
             </li>
-            <li className=" hover:bg-[#262837] p-3 rounded-tl-lg rounded-bl-lg group transition-colors">
-              <a
-                href="#"
-                className=" group-hover:bg-[#ec7c6a] p-3 flex justify-center rounded-xl text-[#ec7c6a] group-hover:text-white transition-colors"
+
+            <li className=" hover:bg-white p-3 rounded-tl-lg rounded-bl-lg group transition-colors">
+              <Link
+                to="/"
+                className="group-hover:bg-[#262837]  group-hover:text-white p-3 flex justify-center rounded-xl text-salte-700 transition-colors"
               >
                 <FaRegBell className="text-xl text-center" />
-              </a>
+              </Link>
             </li>
-            <li className=" hover:bg-[#262837] p-3 rounded-tl-lg rounded-bl-lg group transition-colors">
-              <a
-                href="#"
-                className=" group-hover:bg-[#ec7c6a] p-3 flex justify-center rounded-xl text-[#ec7c6a] group-hover:text-white transition-colors"
+
+            <li className=" hover:bg-whiteS p-3 rounded-tl-lg rounded-bl-lg group transition-colors">
+              <Link
+                to="/"
+                className="group-hover:bg-[#262837]  group-hover:text-white p-3 flex justify-center rounded-xl text-salte-700 transition-colors"
               >
                 <FaCog className="text-xl text-center" />
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
 
         <div className="pl-4">
           <ul>
-            <li className=" hover:bg-[#262837] p-3 rounded-tl-lg rounded-bl-lg group transition-colors">
-              <a
-                href="#"
-                className=" group-hover:bg-[#ec7c6a] p-3 flex justify-center rounded-xl text-[#ec7c6a] group-hover:text-white transition-colors"
+            <li className=" hover:bg-white p-3 rounded-tl-lg rounded-bl-lg group transition-colors">
+              <Link
+                to="/"
+                className="group-hover:bg-[#262837]  group-hover:text-white p-3 flex justify-center rounded-xl text-salte-700 transition-colors"
               >
                 <HiOutlineLogout className="text-xl text-center" />
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
