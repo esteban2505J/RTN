@@ -32,10 +32,10 @@ export default function Login() {
               aria-label="Tabs form"
               selectedKey={selected}
               onSelectionChange={setSelected}
-              className=""
+              className="mb-4"
             >
               <Tab key="login" title="Login">
-                <form className="flex flex-col gap-4  h-[350px]">
+                <form className="flex flex-col gap-8 mt-6  h-[350px]">
                   <Input
                     isRequired
                     label="Email"
@@ -62,7 +62,7 @@ export default function Login() {
                     type={isVisible ? "text" : "password"}
                     className="max-w-xs"
                   />
-                  <p className="text-center text-small">
+                  <p className="text-center text-small -m-6">
                     Need to create an account?{" "}
                     <Link
                       size="sm"
@@ -72,8 +72,8 @@ export default function Login() {
                       Sign up
                     </Link>
                   </p>
-                  <div className="flex gap-2 justify-end">
-                    <Button fullWidth className="bg-[#a0ab94]">
+                  <div className="mt-10 justify-end">
+                    <Button fullWidth className="bg-[#a0ab94] ">
                       Login
                     </Button>
                   </div>
@@ -131,8 +131,8 @@ export default function Login() {
                       Login
                     </Link>
                   </p>
-                  <div className="flex gap-2 justify-end">
-                    <Button fullWidth className="bg-[#a0ab94]">
+                  <div className="flex gap-3 justify-end ">
+                    <Button fullWidth className="bg-[#a0ab94] ">
                       Sign up
                     </Button>
                   </div>
