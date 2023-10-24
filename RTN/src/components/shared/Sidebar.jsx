@@ -9,11 +9,11 @@ export const Sidebar = () => {
   return (
     <>
       <div
-        className={` bg-[#8cb7bc] fixed bottom-0 md:left-0 items-center md:w-28 md:h-full w-full  flex h-20 md:flex-col flex-row justify-evenly py-6 rounded-tr-xl rounded-br-xl z-50  mb-0 left-0 `}
+        className={` bg-[#8cb7bc] fixed bottom-0 md:left-0 items-center md:w-24 md:h-full w-full  flex h-20 md:flex-col flex-row justify-evenly py-6 rounded-tr-xl rounded-br-xl z-50  mb-0 left-0 `}
       >
         <div className="">
-          <ul className="flex md:flex-col justify-center items-center ">
-            <li className="hover:bg-white p-3 rounded-tl-lg rounded-bl-lg group transition-colors">
+          <ul className="flex md:flex-col  items-center justify-center ">
+            <li className="hover:bg-white md:p-3 p-1 rounded-tl-lg rounded-bl-lg group transition-colors">
               <Link
                 to="/"
                 className="group-hover:bg-[#262837]  group-hover:text-white p-3 flex justify-center rounded-xl text-salte-700 transition-colors"
@@ -31,7 +31,7 @@ export const Sidebar = () => {
               </Link>
             </li>
 
-            <li className=" hover:bg-white  p-1  md:p-3 rounded-tl-lg rounded-bl-lg group transition-colors">
+            <li className=" hover:bg-white  p-1 md:p-3 rounded-tl-lg rounded-bl-lg group transition-colors">
               <Link
                 to="/"
                 className="group-hover:bg-[#262837]  group-hover:text-white p-3 flex justify-center rounded-xl text-salte-700 transition-colors"
@@ -58,7 +58,7 @@ export const Sidebar = () => {
               </Link>
             </li>
 
-            <li className=" hover:bg-whiteS  p-1 md:p-3 rounded-tl-lg rounded-bl-lg group transition-colors">
+            <li className=" hover:bg-white  p-1 md:p-3 rounded-tl-lg rounded-bl-lg group transition-colors">
               <Link
                 to="/"
                 className="group-hover:bg-[#262837]  group-hover:text-white p-3 flex justify-center rounded-xl text-salte-700 transition-colors"
