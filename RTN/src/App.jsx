@@ -2,7 +2,7 @@
 import React from "react";
 import Home from "./pages/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import StudentPage from "./pages/studentPage";
+import StudentPage from "./pages/StudentPage";
 import TeacherPage from "./pages/TeacherPage";
 import { Sidebar } from "./components/shared/Sidebar";
 
