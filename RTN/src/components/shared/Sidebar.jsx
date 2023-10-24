@@ -80,7 +80,7 @@ export const Sidebar = (props) => {
                 to="/"
                 className="group-hover:bg-[#262837]  group-hover:text-white p-3 flex justify-center rounded-xl text-salte-700 transition-colors"
               >
-                <HiOutlineLogout className="text-xl text-center" />
+                <HiOutlineLogout className="text-2xl text-center" />
               </Link>
             </li>
           </ul>

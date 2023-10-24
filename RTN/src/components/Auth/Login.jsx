@@ -9,6 +9,8 @@ import {
   Card,
   CardBody,
   CardHeader,
+  Select,
+  SelectItem,
 } from "@nextui-org/react";
 
 import { EyeFilledIcon } from "./EyeFilledIcon";
@@ -17,23 +19,23 @@ import { EyeSlashFilledIcon } from "./EyeSlashFilledIcon";
 export default function Login() {
   const [selected, setSelected] = React.useState("login");
   const [isVisible, setIsVisible] = React.useState(false);
-  const [roll, setRoll] = React.useState("");
 
   const toggleVisibility = () => setIsVisible(!isVisible);
   return (
     <>
       <div className="flex flex-col w-full">
-        <Card className="max-w-full w-[340px] h-[400px] bg-[#6b9795] flex">
-          <CardBody className="overflow-hidden">
+        <Card className="max-w-full w-[340px]  bg-[#6b9795] flex">
+          <CardBody className="overflow-auto ">
             <Tabs
               fullWidth
               size="md"
               aria-label="Tabs form"
               selectedKey={selected}
               onSelectionChange={setSelected}
+              className=""
             >
               <Tab key="login" title="Login">
-                <form className="flex flex-col gap-4">
+                <form className="flex flex-col gap-4  h-[350px]">
                   <Input
                     isRequired
                     label="Email"
@@ -78,7 +80,15 @@ export default function Login() {
                 </form>
               </Tab>
               <Tab key="sign-up" title="Sign up">
-                <form className="flex flex-col gap-4 h-[300px]">
+                <form className="flex flex-col gap-4 h-[350px]">
+                  <Select
+                    label="I am"
+                    placeholder="Select an Rol"
+                    className="max-w-xs"
+                  >
+                    <SelectItem value="Teacher">Teacher</SelectItem>
+                    <SelectItem value="Student">Student</SelectItem>
+                  </Select>
                   <Input
                     isRequired
                     label="Name"
