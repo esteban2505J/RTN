@@ -5,18 +5,14 @@ import { HiOutlineMail, HiOutlineLogout } from "react-icons/hi";
 import { TiMortarBoard } from "react-icons/ti";
 import { Link } from "react-router-dom";
 
-export const Sidebar = (props) => {
-  const { showMenu } = props;
-
+export const Sidebar = () => {
   return (
     <>
       <div
-        className={`bg-[#8cb7bc] fixed lg:left-0 top-0 w-28 h-full flex flex-col justify-between py-6 rounded-tr-xl rounded-br-xl z-50  ${
-          showMenu ? "left-0" : "-left-full"
-        } transition-all`}
+        className={` bg-[#8cb7bc] fixed bottom-0 md:left-0 items-center  md:w-28 md:h-full w-full  flex h-20 md:flex-col flex-row justify-between py-6 rounded-tr-xl rounded-br-xl z-50  mb-0 left-0 `}
       >
-        <div>
-          <ul className="pl-4">
+        <div className="">
+          <ul className="pl-4 flex ">
             <li className="hover:bg-white p-3 rounded-tl-lg rounded-bl-lg group transition-colors">
               <Link
                 to="/"

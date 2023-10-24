@@ -67,7 +67,7 @@ export default function Login() {
                     <Link
                       size="sm"
                       onPress={() => setSelected("sign-up")}
-                      className="text-[#20db8a] shadow-sm cursor-pointer"
+                      className="text-[#20db8a] shadow-sm hover: cursor-pointer"
                     >
                       Sign up
                     </Link>
@@ -126,7 +126,7 @@ export default function Login() {
                     <Link
                       size="sm"
                       onPress={() => setSelected("login")}
-                      className="text-[#20db8a] shadow-lg rounded-lg cursor-pointer"
+                      className="text-[#20db8a] shadow-lg rounded-lg hover:cursor-pointer"
                     >
                       Login
                     </Link>
