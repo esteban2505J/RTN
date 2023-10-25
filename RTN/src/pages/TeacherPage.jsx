@@ -55,7 +55,17 @@ export default function TeacherPage() {
     });
   };
 
-  const hangleTypeQuestion = (value) => {};
+  const hangleTypeQuestion = (value) => {
+    if (value === "text")
+      return (
+        <>
+          <Input
+            type="texarea"
+            placeholder="Enter an answer of questions"
+          ></Input>
+        </>
+      );
+  };
 
   return (
     <>
@@ -94,8 +104,8 @@ export default function TeacherPage() {
                       <SelectItem>text</SelectItem>
                       <SelectItem>option</SelectItem>
                       <SelectItem>false or true</SelectItem>
+                      {hangleTypeQuestion()}
                     </Select>
-                    {}
                   </form>
                 </div>
               </div>

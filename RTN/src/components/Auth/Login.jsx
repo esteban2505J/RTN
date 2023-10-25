@@ -12,6 +12,7 @@ import {
   Select,
   SelectItem,
 } from "@nextui-org/react";
+import { useNavigate } from "react-router-dom";
 
 import { EyeFilledIcon } from "./EyeFilledIcon";
 import { EyeSlashFilledIcon } from "./EyeSlashFilledIcon";
@@ -21,6 +22,7 @@ export default function Login() {
   const [isVisible, setIsVisible] = React.useState(false);
 
   const toggleVisibility = () => setIsVisible(!isVisible);
+  const navigate = useNavigate();
   return (
     <>
       <div className="flex flex-col w-full">
@@ -73,7 +75,13 @@ export default function Login() {
                     </Link>
                   </p>
                   <div className="mt-10 justify-end">
-                    <Button fullWidth className="bg-[#a0ab94] ">
+                    <Button
+                      fullWidth
+                      className="bg-[#a0ab94] "
+                      onClick={() => {
+                        navigate("/studentPage");
+                      }}
+                    >
                       Login
                     </Button>
                   </div>
