@@ -3,6 +3,7 @@ import { FaPercent, FaCog, FaRegBell } from "react-icons/fa";
 import { GiPieChart } from "react-icons/gi";
 import { HiOutlineMail, HiOutlineLogout } from "react-icons/hi";
 import { TiMortarBoard } from "react-icons/ti";
+import { BiTask } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
 export const Sidebar = () => {
@@ -18,7 +19,7 @@ export const Sidebar = () => {
                 to="/"
                 className="group-hover:bg-[#262837]  group-hover:text-white p-3 flex justify-center rounded-xl text-salte-700 transition-colors"
               >
-                <TiMortarBoard className="text-2xl text-center" />
+                <TiMortarBoard className="text-3xl text-center" />
               </Link>
             </li>
 
@@ -36,7 +37,7 @@ export const Sidebar = () => {
                 to="/"
                 className="group-hover:bg-[#262837]  group-hover:text-white p-3 flex justify-center rounded-xl text-salte-700 transition-colors"
               >
-                <GiPieChart className="text-xl text-center" />
+                <BiTask className="text-2xl text-center" />
               </Link>
             </li>
 
@@ -45,7 +46,7 @@ export const Sidebar = () => {
                 to="/"
                 className="group-hover:bg-[#262837]  group-hover:text-white p-3 flex justify-center rounded-xl text-salte-700 transition-colors"
               >
-                <HiOutlineMail className="text-xl text-center" />
+                <HiOutlineMail className="text-2xl text-center" />
               </Link>
             </li>
 
@@ -54,7 +55,7 @@ export const Sidebar = () => {
                 to="/"
                 className="group-hover:bg-[#262837]  group-hover:text-white p-3 flex justify-center rounded-xl text-salte-700 transition-colors"
               >
-                <FaRegBell className="text-xl text-center" />
+                <FaRegBell className="text-2xl text-center" />
               </Link>
             </li>
 
@@ -63,7 +64,7 @@ export const Sidebar = () => {
                 to="/"
                 className="group-hover:bg-[#262837]  group-hover:text-white p-3 flex justify-center rounded-xl text-salte-700 transition-colors"
               >
-                <FaCog className="text-xl text-center" />
+                <FaCog className="text-2xl text-center" />
               </Link>
             </li>
           </ul>

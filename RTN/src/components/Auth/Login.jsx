@@ -25,7 +25,7 @@ export default function Login() {
   const navigate = useNavigate();
   return (
     <>
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full items-center justify-center">
         <Card className="max-w-full w-[340px]  bg-[#6b9795] flex">
           <CardBody className="overflow-auto ">
             <Tabs
