@@ -54,7 +54,7 @@ export default function TeacherPage() {
   // Agregar una nueva pregunta
   const addQuestion = (data) => {
     const { bodyRequest, answer } = data;
-    console.log(data);
+    // console.log(data);
     setExamData({
       questions: [
         ...examData.questions,
@@ -66,6 +66,7 @@ export default function TeacherPage() {
         },
       ],
     });
+    console.log(examData);
   };
 
   const handleAddOption = () => {
@@ -139,15 +140,20 @@ export default function TeacherPage() {
     return null;
   };
 
+  const handleSendExam = () => {
+    console.log("está funcionadno");
+  };
+
   return (
     <>
-      {/* <div className="flex flex-col"></div> */}
-      <div className="flex flex-col items-center gap-y-5 justify-center mt-14 lg:ml-14">
-        <section className="flex-row md:w-1/2 w-5/6">
+      <div className="flex flex-col items-center gap-y-5 justify-center mt-14 lg:ml-14 ">
+        <section className="flex-row md:w-1/2 w-5/6 mb-5">
           <div>
             <Card className=" bg-slate-400 text-slate-800 text-xl">
               <CardHeader className="text-center justify-center">
-                <h1 className="mr-4">Create a new exam</h1>
+                <h1 className="mr-4 text-cyan-950 font-bold">
+                  Create a new exam
+                </h1>
               </CardHeader>
 
               <CardBody className="transition-all">
@@ -211,54 +217,71 @@ export default function TeacherPage() {
           </div>
         </section>
 
-        <section className="flex flex-row">
-          <Card className=" bg-slate-400 text-slate-800 text-xl">
+        <section className="flex-row md:w-1/2 w-5/6 mb-20">
+          <Card className=" bg-slate-400 text-slate-800 text-xl w-full">
+            <CardHeader className="text-center justify-center">
+              <h1 className="text-cyan-950 font-bold">Preview Exam</h1>
+            </CardHeader>
             <CardBody>
-              {examData.questions.map((question, index) => (
-                <div key={index}>
-                  <p>{question.questionText}</p>
-                  {question.type === "text" && (
-                    <textarea
-                      placeholder="Escribe tu respuesta..."
-                      value={question.answerCorrect}
-                      onChange={(e) => {
-                        const newQuestions = [...examData.questions];
-                        newQuestions[index].answerCorrect = e.target.value;
-                        setExamData({ questions: newQuestions });
-                      }}
-                    />
-                  )}
-                  {question.type === "boolean" && (
-                    <RadioGroup
-                      value={question.answerCorrect}
-                      onValueChange={(value) => {
-                        const newQuestions = [...examData.questions];
-                        newQuestions[index].answerCorrect = value;
-                        setExamData({ questions: newQuestions });
-                      }}
-                    >
-                      <Radio value="true">True</Radio>
-                      <Radio value="false">False</Radio>
-                    </RadioGroup>
-                  )}
-                  {question.type === "options" && (
-                    <RadioGroup
-                      value={question.answerCorrect}
-                      onValueChange={(value) => {
-                        const newQuestions = [...examData.questions];
-                        newQuestions[index].answerCorrect = value;
-                        setExamData({ questions: newQuestions });
-                      }}
-                    >
-                      {question.options.map((option, optionIndex) => (
-                        <Radio key={optionIndex} value={option}>
-                          {option}
-                        </Radio>
-                      ))}
-                    </RadioGroup>
-                  )}
+              <div className="mb-5 ">
+                {examData.questions.map((question, index) => (
+                  <div key={index} className="mb-5 text-slate-950">
+                    <div className="flex gap-x-2">
+                      <p>{index !== 0 ? index + ")" : ""}</p>
+                      <p className="mb-3">{question.questionText}</p>
+                    </div>
+                    {question.type === "text" && (
+                      <textarea
+                        placeholder="Escribe tu respuesta..."
+                        onChange={(e) => {
+                          const newQuestions = [...examData.questions];
+                          newQuestions[index].answerCorrect = e.target.value;
+                          setExamData({ questions: newQuestions });
+                        }}
+                        className="w-full max-h-48 min-h-0 py-2 rounded-xl pl-2 "
+                      />
+                    )}
+                    {question.type === "boolean" && (
+                      <RadioGroup
+                        value={question.answerCorrect}
+                        onValueChange={(value) => {
+                          const newQuestions = [...examData.questions];
+                          newQuestions[index].answerCorrect = value;
+                          setExamData({ questions: newQuestions });
+                        }}
+                      >
+                        <Radio value="true">True</Radio>
+                        <Radio value="false">False</Radio>
+                      </RadioGroup>
+                    )}
+                    {question.type === "options" && (
+                      <RadioGroup
+                        value={question.answerCorrect}
+                        onValueChange={(value) => {
+                          const newQuestions = [...examData.questions];
+                          newQuestions[index].answerCorrect = value;
+                          setExamData({ questions: newQuestions });
+                        }}
+                      >
+                        {question.options.map((option, optionIndex) => (
+                          <Radio key={optionIndex} value={option}>
+                            {option}
+                          </Radio>
+                        ))}
+                      </RadioGroup>
+                    )}
+                  </div>
+                ))}
+                <div className="justify-center flex items-center mt-5">
+                  <Button
+                    color="primary"
+                    className="hover:bg-success"
+                    onClick={handleSendExam}
+                  >
+                    Save Exam
+                  </Button>
                 </div>
-              ))}
+              </div>
             </CardBody>
           </Card>
         </section>
