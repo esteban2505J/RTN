@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import StudentPage from "./pages/StudentPage";
 import TeacherPage from "./pages/TeacherPage";
+import TablePage from "./pages/TablePage";
 import { Sidebar } from "./components/shared/Sidebar";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/studentPage" element={<StudentPage />} />
             <Route path="/teacherPage" element={<TeacherPage />} />
+            <Route path="/teacherPage/table" element={<TablePage />} />
           </Routes>
         </BrowserRouter>
       </main>

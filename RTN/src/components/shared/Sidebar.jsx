@@ -34,7 +34,7 @@ export const Sidebar = () => {
 
             <li className=" hover:bg-white  p-1 md:p-3 rounded-tl-lg rounded-bl-lg group transition-colors">
               <Link
-                to="/"
+                to="/teacherPage/table"
                 className="group-hover:bg-[#262837]  group-hover:text-white p-3 flex justify-center rounded-xl text-salte-700 transition-colors"
               >
                 <BiTask className="text-2xl text-center" />

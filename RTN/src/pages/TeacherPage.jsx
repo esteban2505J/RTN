@@ -5,12 +5,15 @@ import {
   Input,
   CardHeader,
   CardBody,
+  CardFooter,
   Select,
   SelectItem,
 } from "@nextui-org/react";
 // import { AiOutlineFileAdd } from "react-icons/ai";
 import { Radio, RadioGroup } from "@nextui-org/react";
+import { useForm } from "react-hook-form";
 
+// Types of  questions
 const types = [
   {
     label: "Text",
@@ -28,9 +31,13 @@ const types = [
 
 export default function TeacherPage() {
   const [options, setOptions] = useState([]);
+  const optionsArray = [...options];
 
   const [inputValue, setInputValue] = useState("");
   const [inputOption, setInputOption] = useState("");
+  const [visibility, setVisivility] = useState(false);
+  const [type, setType] = useState("text");
+  const { control, handleSubmit, register, reset } = useForm(); // Usa "control" y "reset" de React Hook Form
 
   // Data of exam
   const [examData, setExamData] = useState({
@@ -38,48 +45,46 @@ export default function TeacherPage() {
       {
         questionText: "",
         options: ["", ""],
+        type: "",
+        answerCorrect: "",
       },
     ],
   });
-  const [visibility, setVisivility] = useState(false);
-
-  const [type, setType] = useState("");
 
   // Agregar una nueva pregunta
-  const addQuestion = () => {
+  const addQuestion = (data) => {
+    const { bodyRequest, answer } = data;
+    console.log(data);
     setExamData({
-      ...examData,
       questions: [
         ...examData.questions,
-        { questionText: "", type: "", options: ["", ""], corrextOption: "" },
+        {
+          questionText: bodyRequest,
+          options: type === "options" ? optionsArray : [],
+          type,
+          answerCorrect: answer,
+        },
       ],
     });
   };
 
   const handleAddOption = () => {
     if (inputOption) {
-      setOptions([...options, inputOption]); // Agrega el valor del input a la lista de opciones
+      setOptions([...optionsArray, inputOption]); // Agrega el valor del input a la lista de opciones
       setInputOption(""); // Limpia el input
     }
   };
-  // Agregar una nueva opción de respuesta a una pregunta específica
-  const addOption = (questionIndex) => {
-    const updatedQuestions = [...examData.questions];
-    updatedQuestions[questionIndex].options.push("");
-    setExamData({
-      ...examData,
-      questions: updatedQuestions,
-    });
-  };
 
   const hangleTypeQuestion = () => {
+    // console.log(optionsArray);
+
     if (type === "text") {
       return (
         <>
-          <Input
-            type="texarea"
-            placeholder="Enter an answer of questions"
-          ></Input>
+          <textarea
+            placeholder="Ingrese una respuesta a las preguntas"
+            className="w-full max-h-48 min-h-0 py-2 rounded-xl pl-2 "
+          ></textarea>
         </>
       );
     }
@@ -98,7 +103,7 @@ export default function TeacherPage() {
     if (type === "options") {
       return (
         <>
-          <div className="lg:flex lg:flex-row lg:justify-between lg:gap-x-2 ">
+          <div className="lg:flex lg:flex-row lg:justify-between lg:gap-x-2">
             <Input
               type="text"
               placeholder="Add a option"
@@ -115,10 +120,16 @@ export default function TeacherPage() {
               {" "}
               New option
             </Button>
+          </div>
+          <div className="mt-3">
             <div>
-              {options.map((option, index) => (
-                <div key={index}>{option}</div>
-              ))}
+              <RadioGroup value={inputValue} onValueChange={setInputValue}>
+                {options.map((option, index) => (
+                  <Radio value={option} key={index}>
+                    {option}
+                  </Radio>
+                ))}
+              </RadioGroup>
             </div>
           </div>
         </>
@@ -130,14 +141,12 @@ export default function TeacherPage() {
 
   return (
     <>
-      <div
-        className="flex flex-row justify-center mt-14 lg:ml-14
-      "
-      >
+      {/* <div className="flex flex-col"></div> */}
+      <div className="flex flex-col items-center gap-y-5 justify-center mt-14 lg:ml-14">
         <section className="flex-row md:w-1/2 w-5/6">
           <div>
             <Card className=" bg-slate-400 text-slate-800 text-xl">
-              <CardHeader>
+              <CardHeader className="text-center justify-center">
                 <h1 className="mr-4">Create a new exam</h1>
               </CardHeader>
 
@@ -145,13 +154,19 @@ export default function TeacherPage() {
                 <div className="">
                   <h2 className="mb-3">Add a new item</h2>
                   <div className={visibility ? "invisible" : ""}>
-                    <form action="" className=" flex flex-col gap-5">
+                    <form
+                      className=" flex flex-col gap-5"
+                      onSubmit={handleSubmit(addQuestion)}
+                    >
                       <Input
+                        {...register("bodyRequest", { required: true })}
                         type="text"
                         placeholder="Enter the body of your question"
                         label="Text"
+                        key="bodyRequest"
                       ></Input>
                       <Select
+                        // {...register("type", { required: true })}
                         label="Type"
                         placeholder="Select a type"
                         className="max-w-xs"
@@ -168,13 +183,84 @@ export default function TeacherPage() {
                         ))}
                       </Select>
 
+                      {/* options, boolean or textArea */}
                       <div>{hangleTypeQuestion()}</div>
+
+                      {/*  correct answer*/}
+                      <Input
+                        {...register("answer", { required: true })}
+                        className=""
+                        placeholder="added correct answer"
+                      ></Input>
+
+                      {/* Button send a request a formulary */}
+                      <div className=" flex justify-center items-center">
+                        <Button
+                          color="primary"
+                          className="hover:bg-success"
+                          type="submit"
+                        >
+                          New item
+                        </Button>
+                      </div>
                     </form>
                   </div>
                 </div>
               </CardBody>
             </Card>
           </div>
+        </section>
+
+        <section className="flex flex-row">
+          <Card className=" bg-slate-400 text-slate-800 text-xl">
+            <CardBody>
+              {examData.questions.map((question, index) => (
+                <div key={index}>
+                  <p>{question.questionText}</p>
+                  {question.type === "text" && (
+                    <textarea
+                      placeholder="Escribe tu respuesta..."
+                      value={question.answerCorrect}
+                      onChange={(e) => {
+                        const newQuestions = [...examData.questions];
+                        newQuestions[index].answerCorrect = e.target.value;
+                        setExamData({ questions: newQuestions });
+                      }}
+                    />
+                  )}
+                  {question.type === "boolean" && (
+                    <RadioGroup
+                      value={question.answerCorrect}
+                      onValueChange={(value) => {
+                        const newQuestions = [...examData.questions];
+                        newQuestions[index].answerCorrect = value;
+                        setExamData({ questions: newQuestions });
+                      }}
+                    >
+                      <Radio value="true">True</Radio>
+                      <Radio value="false">False</Radio>
+                    </RadioGroup>
+                  )}
+                  {question.type === "options" && (
+                    <RadioGroup
+                      value={question.answerCorrect}
+                      onValueChange={(value) => {
+                        const newQuestions = [...examData.questions];
+                        newQuestions[index].answerCorrect = value;
+                        setExamData({ questions: newQuestions });
+                      }}
+                    >
+                      {question.options.map((option, optionIndex) => (
+                        <Radio key={optionIndex} value={option}>
+                          {option}
+                        </Radio>
+                      ))}
+                    </RadioGroup>
+                  )}
+                </div>
+              ))}
+            </CardBody>
+          </Card>
         </section>
       </div>
     </>
