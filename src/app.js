@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import autRoutes from "./routes/auth.routes.js";
 import cookieParser from "cookie-parser";
-// import taskRoutes from "./routes/task.routes.js";
+import examRoutes from "./routes/exam.routes.js";
 // import cors from "cors";
 
 dotenv.config();
@@ -20,6 +20,6 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api", autRoutes);
-// app.use("/api", taskRoutes);
+app.use("/api", examRoutes);
 
 export default app;

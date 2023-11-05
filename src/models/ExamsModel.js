@@ -1,17 +1,16 @@
 import mongoose from "mongoose";
 
-// Schema of exams
-
-const examsSchema = new mongoose.Schema(
+const examSchema = new mongoose.Schema(
   {
     subject: { type: String, required: true, trim: true },
     questions: [
       {
-        questionText: String,
+        questionText: { type: String, required: true },
         options: [String],
-        type: String,
-        answerCorrect: String,
-        nota: String,
+        type: { type: String, required: true },
+        answerCorrect: { type: String, required: true },
+        nota: { type: String, required: true },
+        valor: { type: Number, required: true },
       },
     ],
     code: {
@@ -21,7 +20,10 @@ const examsSchema = new mongoose.Schema(
     },
     note: {
       type: Number,
-      required: true,
+    },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user", // Asegúrate de que coincida con el nombre del modelo de usuario
     },
   },
   {
@@ -29,4 +31,4 @@ const examsSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model("exams", examsSchema);
+export default mongoose.model("Exam", examSchema);
