@@ -4,7 +4,6 @@ const psw = process.env.PASSWORD;
 
 export const conectDb = async () => {
   try {
-    console.log(username, psw);
     await mongoose.connect(
       `mongodb+srv://${username}:${psw}@rtn.htpiuat.mongodb.net/RTNDBretryWrites=true&w=majority`
     );
