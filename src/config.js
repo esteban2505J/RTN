@@ -1,1 +1,1 @@
-export const key = process.env.KEY_TOKEN;
+export const KEY = "someKeySecret";

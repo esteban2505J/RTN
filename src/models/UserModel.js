@@ -1,15 +1,9 @@
 import mongoose from "mongoose";
-import ExamsModel from "./ExamsModel";
 
 // schema of user
 
 const userSchema = new mongoose.Schema(
   {
-    userName: {
-      type: String,
-      required: true,
-      trim: true,
-    },
     roll: { type: String, required: true },
     notes: {
       exam: String,
