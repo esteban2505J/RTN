@@ -1,14 +1,13 @@
 // model user db
-import user from "../models/UserModel.js";
+
+import User from "../models/UserModel.js";
 
 // library to encrypt
 import bcrypt from "bcryptjs";
 
 // middlewar wst
 import { createAccesToken } from "../libs/jwt.js";
-
 import jwt from "jsonwebtoken";
-
 import { KEY } from "../config.js";
 
 /*function for te procces of register*/
@@ -19,12 +18,12 @@ export const register = async (req, res) => {
   const passwordHash = await bcrypt.hash(password, 10);
 
   try {
-    const userFound = await user.findOne({ email });
+    const userFound = await User.findOne({ email });
 
     if (userFound) return res.status(400).json(["The email already exist."]);
 
     // create a new user
-    const newUser = new user({
+    const newUser = new User({
       email,
       password: passwordHash,
       roll,
@@ -35,10 +34,9 @@ export const register = async (req, res) => {
 
     // creating a json web token
     const token = await createAccesToken({ id: userSaved._id });
-
     // response with cookie created
     res.cookie("token", token);
-
+    console.log(token);
     res.json({
       id: userSaved._id,
       roll: userSaved.roll,
@@ -57,7 +55,7 @@ export const login = async (req, res) => {
 
   try {
     // found user
-    const userFound = await user.findOne({ email });
+    const userFound = await User.findOne({ email });
 
     if (!userFound) return res.status(400).json({ message: "User no found" });
 
@@ -91,7 +89,7 @@ export const logOut = (req, res) => {
 
 /* function for the process of obtaining the user's profile*/
 export const profile = async (req, res) => {
-  const userFound = await user.findById(req.user.id);
+  const userFound = await User.findById(req.user.id);
   if (!userFound) return res.status(400).json({ message: "user not found" });
 
   return res.json({
@@ -104,17 +102,34 @@ export const profile = async (req, res) => {
 
 export const verifyToken = async (req, res) => {
   const { token } = req.cookies;
+  // console.log("está llegando a verify token");
 
-  if (!token) return res.status(401).json({ message: "Unauthorized" });
+  // console.log(token);
+
+  if (!token)
+    return res
+      .status(401)
+      .json({ message: "Unauthorized" }, console.log("no hay token"));
 
   jwt.verify(token, KEY, async (err, user) => {
-    if (err) return res.status(401).json({ message: "Unauthorized" });
-    const userFound = await user.findById(user.id);
-    if (!userFound) return res.status(401).json({ message: "Unauthorized" });
+    if (err)
+      return (
+        res.status(401).json({ message: "Unauthorized" }),
+        console.log("no es un token válido")
+      );
+    // ;
+    // console.log(user);
+    const userFound = await User.findById(user.id);
+    if (!userFound)
+      return (
+        res.status(401).json({ message: "Unauthorized" }),
+        console.log("no encuentra al usuario")
+      );
+    // console.log("no encuentra al usuario");
 
     return res.json({
-      id: userFound.id,
-      userName: userFound.userName,
+      id: userFound._id,
+      roll: userFound.roll,
       email: userFound.email,
     });
   });

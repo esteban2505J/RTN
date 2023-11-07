@@ -6,21 +6,23 @@ import StudentPage from "./pages/StudentPage";
 import TeacherPage from "./pages/TeacherPage";
 import TablePage from "./pages/TablePage";
 import { Sidebar } from "./components/shared/Sidebar";
+import { AuthProvider } from "./context/AuthContex";
 
 function App() {
   return (
     <>
       <main>
-        <BrowserRouter>
-          <Sidebar />
-
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/studentPage" element={<StudentPage />} />
-            <Route path="/teacherPage" element={<TeacherPage />} />
-            <Route path="/teacherPage/table" element={<TablePage />} />
-          </Routes>
-        </BrowserRouter>
+        <AuthProvider>
+          <BrowserRouter>
+            <Sidebar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/studentPage" element={<StudentPage />} />
+              <Route path="/teacherPage" element={<TeacherPage />} />
+              <Route path="/teacherPage/table" element={<TablePage />} />
+            </Routes>
+          </BrowserRouter>
+        </AuthProvider>
       </main>
     </>
   );

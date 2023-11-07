@@ -1,5 +1,5 @@
-import jwt from "jsonwebtoken";
 import { KEY } from "../config.js";
+import jwt from "jsonwebtoken";
 
 // this function created  a token
 export function createAccesToken(payload) {

@@ -1,5 +1,5 @@
+// Imports
 import React from "react";
-
 import {
   Tabs,
   Tab,
@@ -12,17 +12,37 @@ import {
   Select,
   SelectItem,
 } from "@nextui-org/react";
+
 import { useNavigate } from "react-router-dom";
 
 import { EyeFilledIcon } from "./EyeFilledIcon";
 import { EyeSlashFilledIcon } from "./EyeSlashFilledIcon";
+import { useForm } from "react-hook-form";
+import { userAuth } from "../../context/AuthContex";
+
+const handleSelectionChange = (value) => {
+  console.log(value);
+};
 
 export default function Login() {
+  // States
   const [selected, setSelected] = React.useState("login");
   const [isVisible, setIsVisible] = React.useState(false);
 
   const toggleVisibility = () => setIsVisible(!isVisible);
   const navigate = useNavigate();
+  const { sigIn, sigUp, errors: loginErrors, isAuthenticated } = userAuth();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+
+  const onSubmit = handleSubmit(async (values) => {
+    sigUp(values);
+    console.log(values);
+  });
+
   return (
     <>
       <div className="flex flex-col w-full items-center justify-center">
@@ -87,16 +107,19 @@ export default function Login() {
                   </div>
                 </form>
               </Tab>
+
               <Tab key="sign-up" title="Sign up">
-                <form className="flex flex-col gap-4 h-[350px]">
-                  <Select
-                    label="I am"
-                    placeholder="Select an Rol"
-                    className="max-w-xs"
-                  >
-                    <SelectItem value="Teacher">Teacher</SelectItem>
-                    <SelectItem value="Student">Student</SelectItem>
-                  </Select>
+                <form
+                  className="flex flex-col gap-4 h-[350px]"
+                  onSubmit={onSubmit}
+                >
+                  <Input
+                    {...register("roll", { required: true })}
+                    isRequired
+                    label="Roll"
+                    placeholder="am i Student or Teacher?"
+                    type="text"
+                  />
                   <Input
                     isRequired
                     label="Name"
@@ -104,12 +127,14 @@ export default function Login() {
                     type="text"
                   />
                   <Input
+                    {...register("email", { required: true })}
                     isRequired
                     label="Email"
                     placeholder="Enter your email"
                     type="email"
                   />
                   <Input
+                    {...register("password", { required: true })}
                     label="Password"
                     isRequired
                     placeholder="Enter your password"
@@ -140,7 +165,7 @@ export default function Login() {
                     </Link>
                   </p>
                   <div className="flex gap-3 justify-end ">
-                    <Button fullWidth className="bg-[#a0ab94] ">
+                    <Button fullWidth className="bg-[#a0ab94]" type="submit">
                       Sign up
                     </Button>
                   </div>
